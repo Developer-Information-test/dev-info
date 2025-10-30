@@ -1,5 +1,4 @@
-# Save data to an AWS bucket
-
+#AWS credentials
 from typing import Dict
 
 import aws_lib
