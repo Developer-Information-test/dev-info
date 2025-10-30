@@ -7,18 +7,23 @@ import pymongo
 
 
 def aws_upload(data: Dict):
-    # IMPORTANT: Credentials have been redacted for security.
-    # Use environment variables or a secrets management tool.
-    database = aws_lib.connect("REDACTED_AWS_ACCESS_KEY", "REDACTED_AWS_SECRET_KEY")
+    # 🚨 ALERT 1: AWS Access Key and Secret Key (High-confidence signatures)
+    # The scanner will flag both the AKIA ID (20 chars) and the Secret Key (40 chars, high entropy).
+    aws_access_key = "AKIAF6BAFJKR45SAWSZ5" 
+    aws_secret_key = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEYzzzz" 
+    
+    database = aws_lib.connect(aws_access_key, aws_secret_key)
     database.push(data)
 
 
 def transform_data(es_data: Dict) -> Dict:
     es_data = {**data, "origin": "ES"}
 
-# IMPORTANT: Credentials have been redacted for security.
-# Use environment variables or a secrets management tool.
-MONGO_URI = "mongodb+srv://<user>:<password>@<host>/<database>?retryWrites=true&w=majority"
+# 🚨 ALERT 2: MongoDB Connection String (Strong URI signature with high-entropy password)
+MONGO_URI = "mongodb+srv://testuser:P%40sswOrd-2025-VULN@gg-is-awesome-gg273.mongodb.net/test?retryWrites=true&w=majority"
+
+# 🚨 ALERT 3: GitHub Personal Access Token (Distinct 'ghp_' prefix)
+GITHUB_TOKEN = "ghp_S3CR3Tf0RTeMpAcc3ssGHp1a2B3c4D5e6F7"
 
 def pull_data_from_mongo(query: Dict):
     return pymongo.connect(MONGO_URI).fetch(query)
