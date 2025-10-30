@@ -1,0 +1,8 @@
+# Test file: user-profiles_v2/avatar-images_2024/john.doe@company.com.png
+# This file contains test data for secret scanning
+
+SECRET_KEY="AKIAIOSFODNN7EXAMPLE"
+API_ENDPOINT="https://api.example.com/v1"
+
+# Additional test content
+TEST_DATA="sample"
