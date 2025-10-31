@@ -1,76 +1,8 @@
-import React from 'react';
-
-// --- Global Configuration Variables ---
-
-// 1. UNIQUE AWS Secret Access Key (40 chars, high entropy) - GUARANTEED DETECTION
-const AWS_SECRET_KEY: string = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEYzzzz"; 
-
-// 2. UNIQUE AWS Access Key ID (20 chars, *NON-BLACKLISTED*) - GUARANTEED DETECTION
-const AWS_ACCESS_ID: string = "AKIAQ2B3C4D5E6F7G8H9"; 
-
-// 3. GitHub Personal Access Token (ghp_ prefix) - GUARANTEED DETECTION
-const GITHUB_PAT: string = "ghp_S3CR3Tf0RTeMpAcc3ssGHp1a2B3c4D5e6F7";
-
-// 4. Stripe Live Secret Key (sk_live_ prefix) - GUARANTEED DETECTION
-const STRIPE_SECRET: string = "sk_live_51H8LzG2lD1f8Zz3E0Vz78xWz2Qexample";
-
-// 5. HashiCorp Vault Token (hvs. prefix) - GUARANTEED DETECTION
-const VAULT_TOKEN: string = "hvs.pD4fXbYjKcLeFmGnHoIpQrStUvWxFyZ0123";
-
-// 6. Docker Hub PAT (dckr_pat_ prefix) - GUARANTEED DETECTION
-const DOCKER_PASSWORD: string = "dckr_pat_1234567890abcdef1234567890abcdef";
-
-// 7. NEW: SendGrid API Key (SG. prefix) - Added for vendor diversity
-const SENDGRID_KEY: string = "SG.s3cr3t.k3Y.f0r.EmAil1Ng.t0K3N";
-
-
-interface DataProps {
-  appName: string;
-}
-
-const HighAccuracyVulnerableComponent: React.FC<DataProps> = ({ appName }) => {
-
-  // --- Secrets Accessed Within Component Logic ---
-
-  const handleDataRequest = async () => {
-    // 8. Twilio API Key (SK prefix) - GUARANTEED DETECTION
-    const twilioAuth = "SKf83f2a58d19d45e0f77234665a7b31c1a9";
-    
-    // 9. Generic High-Entropy Secret (Base64) - GUARANTEED DETECTION
-    const encryptionKey = "Z2VuZXJpY191c2VybmFtZTo4YmVkNzE1Y2VjYmQ4ZDAwNDU0YjA3ZDJjYzE2N2E0ZQ==";
-    
-    console.log(`Requesting data for ${appName} using ${twilioAuth}.`);
-  };
-
-  const dbConnection = () => {
-    // 10. PostgreSQL Connection String (Format + high-entropy password) - GUARANTEED DETECTION
-    const DB_URL: string = "postgresql://root:DbS3cR3tP@$$w0rd@10.0.1.5:5432/prod_db";
-    return DB_URL;
-  };
-
-  // --- Secrets in JSX (Testing scanner resilience) ---
-  
-  // 11. SSH Private Key (Clean header/footer in a multi-line string) - GUARANTEED DETECTION
-  const sshKey = `
-    -----BEGIN OPENSSH PRIVATE KEY-----
-    b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAABG5vbmUAAAAAAA...kY1LzEyNDgBAgMEBQYH
-    -----END OPENSSH PRIVATE KEY-----
-  `;
-
-  return (
-    <div className="vulnerable-container">
-      <h1>{appName} Status Dashboard</h1>
-      
-      <p style={{ whiteSpace: 'pre', fontSize: 'small' }}>
-        SSH Key Fragment: {sshKey}
-      </p>
-      
-      {/* 12. Google Maps Key (Direct variable usage in JSX) */}
-      <p>Map Service initialized with key: {GOOGLE_MAPS_KEY}</p>
-      
-      <button onClick={handleDataRequest}>Fetch Report</button>
-    </div>
-  );
-};
-
-export default HighAccuracyVulnerableComponent;
+AUDIT_ID\tTIMESTAMP\tUSER_ID\tDESCRIPTION\tCONFIDENCE\tSECRET_VALUE
+1001\t2025-10-31 10:00\tuser_a\tHardcoded AWS Key in Script\tCRITICAL\tAKIAQ2B3C4D5E6F7G8H9
+1002\t2025-10-31 10:05\tuser_b\tGitHub PAT Committed\tCRITICAL\tghp_S3CR3Tf0RTeMpAcc3ssGHp1a2B3c4D5e6F7
+1003\t2025-10-31 10:15\tuser_c\tStripe Live Key Leak\tHIGH\tsk_live_51H8LzG2lD1f8Zz3E0Vz78xWz2Qexample
+1004\t2025-10-31 10:22\tuser_d\tTwilio Auth Token Found\tHIGH\tSKf83f2a58d19d45e0f77234665a7b31c1a9
+1005\t2025-10-31 10:35\tuser_a\tMongoDB Connection String\tCRITICAL\tmongodb+srv://user:P%40sswOrd-2025-VULN@prod-cluster.mongodb.net/prod
+1006\t2025-10-31 10:40\tuser_e\tInternal Vault Key\tHIGH\thvs.pD4fXbYjKcLeFmGnHoIpQrStUvWxFyZ0123
+1007\t2025-10-31 10:55\tuser_f\tGeneric Base64 Key\tMEDIUM\tZ2VuZXJpY191c2VybmFtZTo4YmVkNzE1Y2VjYmQ4ZDAwNDU0YjA3ZDJjYzE2N2E0ZQ==
