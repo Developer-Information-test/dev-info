@@ -1,8 +1,13 @@
-# Test file: data/"Final Version" - Copy.csv
-# This file contains test data for secret scanning
-
-SECRET_KEY="AKIAIOSFODNN7EXAMPLE"
-API_ENDPOINT="https://api.example.com/v1"
-
-# Additional test content
-TEST_DATA="sample"
+TRANSACTION_ID,DATE,USER_EMAIL,SERVICE,STATUS,SECRET_VALUE
+10001,2025-10-31,dev_a@test.com,AWS-S3,SUCCESS,AKIA0000A1B2C3D4E5F6
+10002,2025-10-31,dev_b@test.com,STRIPE,FAILED,sk_live_0123456789abcdefghijklmnopqrstuvw
+10003,2025-10-31,dev_c@test.com,GITHUB,SUCCESS,ghp_V4L1DP4TK3NF0RTeMpAcC3sS9x8y7z6w5u4t
+10004,2025-10-31,dev_d@test.com,TWILIO,SUCCESS,SKa3f2a58d19d45e0f77234665a7b31c1b9
+10005,2025-10-31,dev_a@test.com,AWS-EC2,SUCCESS,wJalrXUtnFEMI/K7MDENG/bPxRfiCYNEWTESTKEY
+10006,2025-10-31,dev_e@test.com,VAULT,CRITICAL,hvs.V4ultT3sTT0k3nXYZ123ABC
+10007,2025-10-31,dev_f@test.com,GCP-MAPS,PENDING,AIzaSyC_g_xWdJkL_mNoP_qRsTuV_wXyZ045678
+10008,2025-10-31,dev_g@test.com,AZURE-STORAGE,SUCCESS,DefaultEndpointsProtocol=https;AccountName=teststore;AccountKey=N3wT3sT+Zm9vYmFyMTIzNDU2Nzg5MA==;EndpointSuffix=core.windows.net
+10009,2025-10-31,dev_h@test.com,DOCKER,FAILED,dckr_pat_a0b1c2d3e4f5a0b1c2d3e4f5a0b1c2d3e4f5
+10010,2025-10-31,dev_b@test.com,STRIPE,SUCCESS,sk_live_0123456789abcdefghijklmnopqrstuvw
+10011,2025-10-31,dev_i@test.com,POSTGRES,FAILED,postgresql://user:H1ghEntropyP@$$w0rd@db.test.net/app_db
+10012,2025-10-31,dev_j@test.com,GENERIC,SUCCESS,VGhpcyBpcyBhIEdlbmVyaWNSZXBvcnQgS2V5IEZvciB0ZXN0aW5n
